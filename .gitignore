@@ -1,7 +1,6 @@
-libft/a.out
+a.out
 CMakeLists.txt
 cmake-build-debug
 *.o
 .idea
 libftTester
-libft
