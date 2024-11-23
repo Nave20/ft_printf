@@ -14,6 +14,7 @@
 
 #include "libft/libft.h"
 
+int	ft_minimemory()
 
 int	ft_excheck(char const c, size_t i, va_list arg)
 {
@@ -21,20 +22,24 @@ int	ft_excheck(char const c, size_t i, va_list arg)
 
 	count = 0;
 	if (c == 37)
-		count += ft_putchar_fd('%', 1);// --> %%
+		count += ft_putchar_fd('%', 1);
 	else if (c == 99)
-		count += ft_putchar_fd(va_arg(arg, int), 1);// --> %c
+		count += ft_putchar_fd(va_arg(arg, int), 1);
 	else if (c == 115)
-		count += ft_putstr_fd(va_arg(arg, char *), 1);// --> %s
+		count += ft_putstr_fd(va_arg(arg, char *), 1);
 	else if (c == 105)
-		count += ft_putnbr_fd(va_arg(arg, int), 1);// --> %i
+		count += ft_putnbr_fd(va_arg(arg, int), 1);
+	else if (c == 120)
+		count += ft_putnbr_base(va_arg(arg, int), "0123456789abcdef");
+	else if (c == 88)
+		count += ft_putnbr_base(va_arg(arg, int), "0123456789ABCDEF");
 	return (count);
 }
 
 int	ft_printf(const char *s, ...)
 {
 	size_t	i;
-	int count;
+	int		count;
 	va_list	arg;
 
 	i = 0;
@@ -58,6 +63,6 @@ int	ft_printf(const char *s, ...)
 #include <stdio.h>
 int main(void)
 {
-	printf("%d", ft_printf("test %i\n", -103));
+	printf("%d", ft_printf("test %X\n", -42));
 	return 0;
 }

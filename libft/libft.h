@@ -32,6 +32,7 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_atoi(const char *str);
 int		ft_putnbr_fd(int n, int fd);
+int		ft_putnbr_base(int nbr, char *base);
 char	*ft_itoa(int n);
 t_list	*ft_lstnew(void *content);
 char	*ft_strchr(const char *s, int c);
