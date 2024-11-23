@@ -14,7 +14,14 @@
 
 #include "libft/libft.h"
 
-int	ft_minimemory()
+int	ft_minimemory(void	*ptr)
+{
+	int	count;
+
+	count == 0;
+	if (&ptr == NULL)
+		count += ft_putstr_fd("(nil)", 1);
+}
 
 int	ft_excheck(char const c, size_t i, va_list arg)
 {
@@ -63,6 +70,9 @@ int	ft_printf(const char *s, ...)
 #include <stdio.h>
 int main(void)
 {
-	printf("%d", ft_printf("test %X\n", -42));
+	void	*test = NULL;
+
+	// printf("%d", ft_printf("test %X\n", -42));
+	printf("%p", &test);
 	return 0;
 }
