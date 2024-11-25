@@ -15,7 +15,7 @@
 
 # include <stddef.h>
 # include <stdlib.h>
-#include <unistd.h>
+# include <unistd.h>
 
 typedef struct s_list
 {
@@ -31,8 +31,8 @@ int		ft_isalnum(int c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 int		ft_atoi(const char *str);
-int		ft_putnbr_fd(int n, int fd);
-int		ft_putnbr_base(int nbr, char *base);
+int		ft_putnbr_fd(long int n, int fd);
+int		ft_putnbr_base(long long int nbr, char *base);
 char	*ft_itoa(int n);
 t_list	*ft_lstnew(void *content);
 char	*ft_strchr(const char *s, int c);

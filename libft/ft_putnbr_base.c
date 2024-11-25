@@ -50,7 +50,7 @@ int	ft_printer(int i, char *a)
 	return (count);
 }
 
-int	ft_putnbr_base(int nbr, char *base)
+int	ft_putnbr_base(long long int nbr, char *base)
 {
 	int		i;
 	int		size;

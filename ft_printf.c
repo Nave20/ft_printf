@@ -14,65 +14,78 @@
 
 #include "libft/libft.h"
 
-int	ft_minimemory(void	*ptr)
-{
-	int	count;
-
-	count == 0;
-	if (&ptr == NULL)
-		count += ft_putstr_fd("(nil)", 1);
-}
-
-int	ft_excheck(char const c, size_t i, va_list arg)
+static int	ft_minimemory(const long long int ptr)
 {
 	int	count;
 
 	count = 0;
-	if (c == 37)
-		count += ft_putchar_fd('%', 1);
-	else if (c == 99)
-		count += ft_putchar_fd(va_arg(arg, int), 1);
-	else if (c == 115)
-		count += ft_putstr_fd(va_arg(arg, char *), 1);
-	else if (c == 105)
-		count += ft_putnbr_fd(va_arg(arg, int), 1);
-	else if (c == 120)
-		count += ft_putnbr_base(va_arg(arg, int), "0123456789abcdef");
-	else if (c == 88)
-		count += ft_putnbr_base(va_arg(arg, int), "0123456789ABCDEF");
+	if (ptr == 0)
+		return (count += ft_putstr_fd("(nil)", 1));
+	else
+	{
+		count += ft_putstr_fd("0x", 1);
+		count += ft_putnbr_base(ptr, "0123456789abcdef");
+	}
 	return (count);
+}
+
+static int	ft_excheck(char const c, va_list arg)
+{
+	int	count;
+
+	count = 0;
+	if (c == '%')
+		count = ft_putchar_fd('%', 1);
+	else if (c == 'c')
+		count = ft_putchar_fd(va_arg(arg, int), 1);
+	else if (c == 's')
+		count = ft_putstr_fd(va_arg(arg, char *), 1);
+	else if (c == 'i' || c == 'd')
+		count = ft_putnbr_fd(va_arg(arg, int), 1);
+	else if (c == 'x')
+		count = ft_putnbr_base(va_arg(arg, unsigned int), "0123456789abcdef");
+	else if (c == 'X')
+		count = ft_putnbr_base(va_arg(arg, unsigned int), "0123456789ABCDEF");
+	else if (c == 'p')
+		count = ft_minimemory(va_arg(arg, long long int));
+	else if (c == 'u')
+		count = ft_putnbr_fd(va_arg(arg, unsigned int), 1);
+	return (count);
+}
+
+int	ft_miniprintf(char const c, va_list arg)
+{
+
 }
 
 int	ft_printf(const char *s, ...)
 {
 	size_t	i;
 	int		count;
+	int		final;
 	va_list	arg;
 
 	i = 0;
-	count = 0;
+	final = 0;
 	va_start(arg, s);
 	while (s[i])
 	{
 		if (s[i] != 37)
 		{
-			count += ft_putchar_fd(s[i], 1);
+			count = ft_putchar_fd(s[i], 1);
+			if (count == -1)
+				return -1;
+			final += count;
 			i++;
 		}
 		else
 		{
-			count += ft_excheck(s[i + 1], i, arg);
+			count = ft_excheck(s[i + 1], arg);
+			if (count == -1)
+				return (-1);
+			final += count;
 			i += 2;
 		}
 	}
-	return (count);
-}
-#include <stdio.h>
-int main(void)
-{
-	void	*test = NULL;
-
-	// printf("%d", ft_printf("test %X\n", -42));
-	printf("%p", &test);
-	return 0;
+	return (final);
 }

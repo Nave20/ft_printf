@@ -6,14 +6,15 @@
 /*   By: vpirotti <vpirotti@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/23 14:22:52 by vpirotti          #+#    #+#             */
-/*   Updated: 2024/11/23 14:33:51 by vpirotti         ###   ########.fr       */
+/*   Updated: 2024/11/25 11:30:40 by vpirotti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-#include <stdarg.h>
+# include <stdarg.h>
 
+int	ft_printf(const char *s, ...);
 
 #endif

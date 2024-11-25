@@ -1,6 +1,8 @@
 NAME = libft.a
 
-SOURCES = \
+SOURCES =	\
+	printf.c	\
+	printf.h
 
 BONUS =	\
 
@@ -29,7 +31,7 @@ ${NAME}	:	${LIB} ${OBJS} Makefile
 	${AR} ${NAME} ${OBJS}
 
 ${LIB} :
-	make bonus -C libft/
+	make -C libft/
 
 bonus	:
 	@make SRCS="${SRCS} ${BNS}"
