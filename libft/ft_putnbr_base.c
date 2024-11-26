@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int	check_base(char *base)
+int	check_base(const char *base)
 {
 	int	i;
 	int	a;
@@ -50,10 +50,10 @@ int	ft_printer(int i, char *a)
 	return (count);
 }
 
-int	ft_putnbr_base(long long int nbr, char *base)
+int	ft_putnbr_base(unsigned long long int nbr, char *base)
 {
 	int		i;
-	int		size;
+	size_t	size;
 	char	a[1000];
 
 	if (check_base(base) == 0)
@@ -63,7 +63,7 @@ int	ft_putnbr_base(long long int nbr, char *base)
 		write(1, "-", 1);
 		nbr *= -1;
 	}
-	size = (int) ft_strlen(base);
+	size = ft_strlen(base);
 	i = 0;
 	while (nbr > 0)
 	{

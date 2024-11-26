@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <unistd.h>
 
-int	ft_putnbr_fd(long int n, int fd)
+int	ft_putnbr_fd(long long int n, int fd)
 {
 	char	a;
 	int		count;

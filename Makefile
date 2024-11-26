@@ -1,18 +1,11 @@
-NAME = libft.a
-
 SOURCES =	\
-	printf.c	\
-	printf.h
-
-BONUS =	\
+	ft_printf.c
 
 OBJS	=	${SOURCES:.c=.o}
 
-B_OBJS	=	${BONUS:.c=.o}
+HEADER	=	ft_printf.h
 
-HEADER	=	libft.h
-
-LIB = libft.a
+LIB = libft/libft.a
 
 NAME	=	libftprintf.a
 
@@ -28,13 +21,11 @@ all	:	${NAME}
 	${CC} ${FLAGS} -c $< -o $@
 
 ${NAME}	:	${LIB} ${OBJS} Makefile
-	${AR} ${NAME} ${OBJS}
+	cp libft/libft.a ${NAME}
+	ar -r ${NAME} ${OBJS}
 
 ${LIB} :
-	make -C libft/
-
-bonus	:
-	@make SRCS="${SRCS} ${BNS}"
+	make bonus -C libft/
 
 clean	:
 	rm -f ${OBJS} ${B_OBJS}
