@@ -14,6 +14,8 @@
 
 #include "libft/libft.h"
 
+int	ft_printf(const char *s, ...);
+
 static int	ft_minimemory(long long int ptr)
 {
 	int	final;
@@ -39,7 +41,7 @@ static int	ft_excheck(char const c, va_list arg)
 {
 	int	count;
 
-	count = 0;
+	count = -1;
 	if (c == '%')
 		count = ft_putchar_fd('%', 1);
 	else if (c == 'c')
@@ -58,6 +60,8 @@ static int	ft_excheck(char const c, va_list arg)
 		count = ft_minimemory(va_arg(arg, unsigned long));
 	else if (c == 'u')
 		count = ft_putnbr_fd(va_arg(arg, unsigned int), 1);
+	else
+		count = ft_printf("%%%c", c);
 	return (count);
 }
 
@@ -93,7 +97,9 @@ int	ft_printf(const char *s, ...)
 // #include <stdio.h>
 // int main(void)
 // {
-// 	printf(" %x \n", LONG_MAX);
-// 	ft_printf(" %x ", LONG_MAX);
+// 	char *test = "bonjour";
+//
+// 	printf("%y \n");
+// 	ft_printf("%y \n");
 // 	return (0);
 // }
