@@ -17,7 +17,7 @@
 static int	ft_minimemory(long long int ptr)
 {
 	int	final;
-	int count;
+	int	count;
 
 	final = 0;
 	if (ptr == 0)
@@ -49,11 +49,13 @@ static int	ft_excheck(char const c, va_list arg)
 	else if (c == 'i' || c == 'd')
 		count = ft_putnbr_fd(va_arg(arg, int), 1);
 	else if (c == 'x')
-		count = ft_putnbr_base(va_arg(arg, unsigned long int), "0123456789abcdef");
+		count = ft_putnbr_base(va_arg
+				(arg, unsigned int), "0123456789abcdef");
 	else if (c == 'X')
-		count = ft_putnbr_base(va_arg(arg, unsigned long int), "0123456789ABCDEF");
+		count = ft_putnbr_base(va_arg
+				(arg, unsigned int), "0123456789ABCDEF");
 	else if (c == 'p')
-		count = ft_minimemory(va_arg(arg, long long int));
+		count = ft_minimemory(va_arg(arg, unsigned long));
 	else if (c == 'u')
 		count = ft_putnbr_fd(va_arg(arg, unsigned int), 1);
 	return (count);
@@ -73,20 +75,16 @@ int	ft_printf(const char *s, ...)
 	{
 		if (s[i] != 37)
 		{
-			count = ft_putchar_fd(s[i], 1);
-			if (count == -1)
-				return -1;
-			final += count;
-			i++;
+			count = ft_putchar_fd(s[i++], 1);
 		}
 		else
 		{
 			count = ft_excheck(s[i + 1], arg);
-			if (count == -1)
-				return (-1);
-			final += count;
 			i += 2;
 		}
+		if (count == -1)
+			return (-1);
+		final += count;
 	}
 	return (final);
 }
@@ -94,8 +92,7 @@ int	ft_printf(const char *s, ...)
 // #include <stdio.h>
 // int main(void)
 // {
-// 	printf("%x \n", -42);
-// 	// printf(" %p %p ", LONG_MIN, LONG_MAX);
-// 	// ft_printf(" %p %p ", LONG_MIN, LONG_MAX);
+// 	printf(" %x \n", LONG_MAX);
+// 	ft_printf(" %x ", LONG_MAX);
 // 	return (0);
 // }

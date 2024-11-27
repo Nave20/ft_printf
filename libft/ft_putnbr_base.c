@@ -36,40 +36,47 @@ int	check_base(const char *base)
 	return (1);
 }
 
-int	ft_printer(int i, char *a)
+size_t	ft_base_res(unsigned long long int nbr, size_t base)
 {
-	int	count;
+	size_t	res;
 
-	count = 0;
-	i--;
-	while (i > -1)
+	res = 0;
+	while (nbr > 0)
 	{
-		count += (int) write(1, &a[i], 1);
-		i--;
+		nbr /= base;
+		res++;
 	}
-	return (count);
+	return (res);
+}
+
+char	*ft_miniputnbr(unsigned long long int nbr, char *base, char *res)
+{
+	size_t	size;
+	size_t	len;
+
+	size = ft_strlen(base);
+	len = ft_base_res(nbr, size);
+	res[len--] = 0;
+	while (nbr > 0)
+	{
+		res[len--] = base[nbr % size];
+		nbr = nbr / size;
+	}
+	return (res);
 }
 
 int	ft_putnbr_base(unsigned long long int nbr, char *base)
 {
-	int		i;
-	size_t	size;
-	char	a[1000];
+	char	*res;
+	int		out;
 
-	if (check_base(base) == 0)
+	if (nbr == 0)
+		return ((int) write(1, "0", 1));
+	res = calloc(sizeof(char), 1000);
+	if (check_base(base) == 0 || !res)
 		return (-1);
-	if (nbr < 0)
-	{
-		write(1, "-", 1);
-		nbr *= -1;
-	}
-	size = ft_strlen(base);
-	i = 0;
-	while (nbr > 0)
-	{
-		a[i] = base[nbr % size];
-		nbr = nbr / size;
-		i++;
-	}
-	return (ft_printer(i, a));
+	res = ft_miniputnbr(nbr, base, res);
+	out = ft_putstr_fd(res, 1);
+	free(res);
+	return (out);
 }
