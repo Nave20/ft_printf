@@ -73,12 +73,12 @@ int	ft_printf(const char *s, ...)
 	i = 0;
 	final = 0;
 	va_start(arg, s);
+	if (s == 0)
+		return (0);
 	while (s[i])
 	{
 		if (s[i] != 37)
-		{
 			count = ft_putchar_fd(s[i++], 1);
-		}
 		else
 		{
 			count = ft_excheck(s[i + 1], arg);
@@ -91,13 +91,12 @@ int	ft_printf(const char *s, ...)
 	va_end(arg);
 	return (final);
 }
-// #include <limits.h>
-// #include <stdio.h>
-// int main(void)
-// {
-// 	char *test = "bonjour";
-//
-// 	printf("%p \n", &test);
-// 	ft_printf("%p \n", &test);
-// 	return (0);
-// }
+#include <limits.h>
+#include <stdio.h>
+int main(void)
+{
+	// char *test = "bonjour";
+
+	ft_printf(0);
+	return (0);
+}
