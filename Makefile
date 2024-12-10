@@ -20,10 +20,12 @@ all	:	${NAME}
 %.o	:	%.c ${HEADER}
 	${CC} ${FLAGS} -c $< -o $@
 
-${NAME}	:	${OBJS} Makefile FORCE
-	make bonus -C libft/
+${NAME}	:	${LIB} ${OBJS} Makefile
 	cp libft/libft.a ${NAME}
 	ar -rcs ${NAME} ${OBJS}
+
+${LIB} : FORCE
+	make bonus -C libft/
 
 FORCE:
 
