@@ -20,21 +20,21 @@ all	:	${NAME}
 %.o	:	%.c ${HEADER}
 	${CC} ${FLAGS} -c $< -o $@
 
-${NAME}	:	${LIB} ${OBJS} Makefile
-	cp libft/libft.a ${NAME}
-	ar -r ${NAME} ${OBJS}
-
-${LIB} :
+${NAME}	:	${OBJS} Makefile FORCE
 	make bonus -C libft/
+	cp libft/libft.a ${NAME}
+	ar -rcs ${NAME} ${OBJS}
+
+FORCE:
 
 clean	:
-	rm -f ${OBJS} ${B_OBJS}
+	rm -f ${OBJS}
 	make clean -C libft/
 
 fclean	:	clean
-	rm -f ${NAME} ${B_OBJS}
+	rm -f ${NAME}
 	make fclean -C libft/
 
 re	:	fclean all
 
-.PHONY	:	all clean fclean re bonus
+.PHONY	:	all clean fclean re bonus FORCE
