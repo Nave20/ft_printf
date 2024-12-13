@@ -91,12 +91,12 @@ int	ft_printf(const char *s, ...)
 	va_end(arg);
 	return (final);
 }
-#include <limits.h>
-#include <stdio.h>
-int main(void)
-{
-	// char *test = "bonjour";
-
-	ft_printf(0);
-	return (0);
-}
+// #include <limits.h>
+// #include <stdio.h>
+// int main(void)
+// {
+// 	// char *test = "bonjour";
+//
+// 	ft_printf(0);
+// 	return (0);
+// }
