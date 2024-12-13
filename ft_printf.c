@@ -12,9 +12,8 @@
 
 #include <stdarg.h>
 
+#include "ft_printf.h"
 #include "libft/libft.h"
-
-int	ft_printf(const char *s, ...);
 
 static int	ft_minimemory(long long int ptr)
 {
@@ -72,9 +71,9 @@ int	ft_printf(const char *s, ...)
 
 	i = 0;
 	final = 0;
-	va_start(arg, s);
 	if (s == 0)
 		return (0);
+	va_start(arg, s);
 	while (s[i])
 	{
 		if (s[i] != 37)
@@ -85,7 +84,7 @@ int	ft_printf(const char *s, ...)
 			i += 2;
 		}
 		if (count == -1)
-			return (-1);
+			return (va_end(arg), -1);
 		final += count;
 	}
 	va_end(arg);
